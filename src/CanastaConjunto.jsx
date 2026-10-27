@@ -59,6 +59,11 @@ export default function CanastaConjunto() {
           </div>
           <h1 className="conjunto-title">La Mesa de Nochebuena</h1>
           <p className="conjunto-subtitle">Los 4 clásicos reunidos para compartir en familia</p>
+          <div className="header-contact-badge" title="Número de WhatsApp">
+            <span className="contact-icon">💬</span>
+            <span className="contact-label">WhatsApp:</span>
+            <span className="contact-number">995 031 972</span>
+          </div>
         </header>
 
         {/* Mosaico Dinámico de los 4 Productos Juntos (2x2 en móvil) */}

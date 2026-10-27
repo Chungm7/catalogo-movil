@@ -6,15 +6,15 @@ import CanastaConjunto from './CanastaConjunto'
 const PRODUCTOS = [
   {
     id: 'paneton-bolsa',
-    nombre: 'Panetón Gloria',
+    nombre: 'Panetón Gloria (Edición Bolsa)',
     precio: 'S/ 23.00',
     badge: '🎅 Clásico en Bolsa',
     imagen: '/paneton_bolsa.webp'
   },
   {
     id: 'paneton-caja',
-    nombre: 'Panetón Gloria',
-    precio: 'S/ 27.00',
+    nombre: 'Panetón Gloria (Edición Caja)',
+    precio: 'S/ 26.00',
     badge: '🎁 Presentación Regalo',
     imagen: '/paneton_caja.webp'
   },
@@ -34,9 +34,9 @@ const PRODUCTOS = [
   }
 ]
 
-// Detección de ruta sin barras visibles en UI:
-// Ruta principal: '/' -> Pantalla 1 (Vertical 1 a 1)
-// Ruta conjunto:  '/conjunto' o '#conjunto' -> Pantalla 2 (Vista Conjunto)
+// Detección automática de ruta (sin barras en pantalla):
+// '/'         -> Pantalla 1 (Vertical 1 a 1)
+// '/conjunto' o '#conjunto' -> Pantalla 2 (Vista Conjunto)
 const detectRoute = () => {
   const path = window.location.pathname.toLowerCase()
   const hash = window.location.hash.toLowerCase()
@@ -59,12 +59,12 @@ export default function App() {
     }
   }, [])
 
-  // PANTALLA 2: Vista de los 4 productos en conjunto (Ruta /conjunto o #conjunto)
+  // PANTALLA 2: Vista de los 4 productos en conjunto
   if (route === 'conjunto') {
     return <CanastaConjunto />
   }
 
-  // PANTALLA 1: Catálogo Vertical 100vh individual original (Ruta por defecto '/')
+  // PANTALLA 1: Catálogo Vertical 100vh individual original
   return (
     <div className="catalog-wrapper">
       {/* Destellos y Nieve Ambiental en CSS Puro */}
@@ -77,13 +77,18 @@ export default function App() {
         <span className="particle">❄</span>
       </div>
 
-      {/* Header Festivo Elegante y Conciso */}
+      {/* Header Festivo con Número de WhatsApp Visible */}
       <header className="catalog-header">
         <div className="header-pill">
           <span className="header-icon">🎄</span>
           <span className="header-text">Navidad Peruana</span>
           <span className="header-dot">•</span>
           <span className="header-sub">Mesa de Nochebuena</span>
+        </div>
+        <div className="header-contact-badge" title="Número de WhatsApp">
+          <span className="contact-icon">💬</span>
+          <span className="contact-label">WhatsApp:</span>
+          <span className="contact-number">995 031 972</span>
         </div>
       </header>
 
