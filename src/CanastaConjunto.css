@@ -1,0 +1,372 @@
+/* ==========================================================================
+   PANTALLA CONJUNTO - LOS 4 PRODUCTOS REUNIDOS (MOBILE-FIRST)
+   Pure Native CSS | Diseño Dinámico, Vistoso y Compacto para Móvil y Web
+   ========================================================================== */
+
+:root {
+  --xmas-dark: #0a0103;
+  --xmas-velvet: #3a080f;
+  --xmas-card: rgba(22, 4, 7, 0.9);
+  --xmas-gold: #f5cb68;
+  --xmas-gold-light: #fff2cc;
+  --xmas-gold-glow: rgba(245, 203, 104, 0.45);
+  --xmas-gold-border: rgba(245, 203, 104, 0.4);
+  --xmas-red: #a31422;
+  --xmas-red-bright: #c9182b;
+
+  --font-xmas: 'Berkshire Swash', cursive, Georgia, serif;
+  --font-xmas-royal: 'Cinzel Decorative', Georgia, serif;
+  --font-numbers: 'Playfair Display', Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   CONTENEDOR GLOBAL
+   ========================================================================== */
+.conjunto-screen {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100vw;
+  background:
+    radial-gradient(ellipse at 50% 10%, #4a0d16 0%, #1c0306 48%, var(--xmas-dark) 100%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 12px 24px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.conjunto-container {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   ENCABEZADO FESTIVO
+   ========================================================================== */
+.conjunto-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(18, 3, 6, 0.85);
+  border: 1px solid var(--xmas-gold-border);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.tag-icon {
+  font-size: 14px;
+}
+
+.tag-title {
+  font-family: var(--font-xmas-royal);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--xmas-gold);
+  letter-spacing: 0.8px;
+}
+
+.conjunto-title {
+  font-family: var(--font-xmas);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 2px 0 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 16px rgba(245, 203, 104, 0.25);
+}
+
+.conjunto-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   MOSAICO DE LOS 4 PRODUCTOS JUNTOS (2x2 EN MÓVIL, RESPONSIVO EN DESKTOP)
+   ========================================================================== */
+.products-composite-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .products-composite-grid {
+    gap: 16px;
+  }
+}
+
+/* Tarjeta individual dentro del conjunto */
+.composite-card {
+  position: relative;
+  background: var(--xmas-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--xmas-gold-border);
+  border-radius: 18px;
+  padding: 12px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+  transition: transform 0.25s var(--spring), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.composite-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: var(--xmas-gold);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85), 0 0 20px var(--xmas-gold-glow);
+}
+
+/* Estado enfocado / seleccionado al hacer clic o tap */
+.composite-card.is-focused {
+  border-color: var(--xmas-gold);
+  background: rgba(36, 6, 11, 0.95);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(245, 203, 104, 0.35),
+    inset 0 0 16px rgba(245, 203, 104, 0.15);
+  transform: scale(1.03);
+}
+
+/* Resplandor cálido interior */
+.card-glow {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(245, 203, 104, 0.2) 0%, rgba(163, 20, 34, 0.15) 50%, transparent 75%);
+  filter: blur(16px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mini badge temático en esquina superior */
+.mini-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(163, 20, 34, 0.9);
+  color: #ffffff;
+  font-family: var(--font-xmas-royal);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(245, 203, 104, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* Indicador de selección ✦ */
+.selection-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--xmas-gold);
+  font-size: 13px;
+  text-shadow: 0 0 8px var(--xmas-gold);
+  animation: pulseDot 1.6s infinite ease-in-out;
+  z-index: 2;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Marco de la imagen: siempre completa y contenida */
+.card-img-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+  .card-img-wrap {
+    height: 140px;
+  }
+}
+
+.card-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.75));
+  transition: transform 0.3s ease;
+}
+
+.composite-card:hover .card-product-img,
+.composite-card.is-focused .card-product-img {
+  transform: scale(1.06);
+}
+
+/* Textos de la tarjeta */
+.card-info {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.card-title {
+  font-family: var(--font-xmas);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.card-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.2px;
+}
+
+/* Píldora de precio individual */
+.card-price-pill {
+  margin-top: 4px;
+  background: linear-gradient(135deg, rgba(245, 203, 104, 0.2) 0%, rgba(163, 20, 34, 0.3) 100%);
+  border: 1px solid var(--xmas-gold);
+  border-radius: 9999px;
+  padding: 4px 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-price-pill span {
+  font-family: var(--font-numbers);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--xmas-gold);
+  text-shadow: 0 0 10px var(--xmas-gold-glow);
+}
+
+/* ==========================================================================
+   BARRA SPOTLIGHT DEL PRODUCTO SELECCIONADO
+   ========================================================================== */
+.featured-spotlight-bar {
+  background: rgba(18, 3, 6, 0.85);
+  border: 1px solid var(--xmas-gold-border);
+  border-radius: 14px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.spotlight-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spotlight-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--xmas-gold);
+  letter-spacing: 0.6px;
+}
+
+.spotlight-name {
+  font-family: var(--font-xmas);
+  font-size: 15px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.spotlight-sub {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.spotlight-price {
+  font-family: var(--font-numbers);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--c-gold, #f5cb68);
+  text-shadow: 0 0 12px var(--xmas-gold-glow);
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD MÓVIL
+   ========================================================================== */
+@media (max-width: 420px) {
+  .conjunto-screen {
+    padding: 12px 8px 18px;
+  }
+
+  .conjunto-title {
+    font-size: 22px;
+  }
+
+  .products-composite-grid {
+    gap: 8px;
+  }
+
+  .composite-card {
+    padding: 10px 8px 12px;
+    border-radius: 16px;
+  }
+
+  .card-img-wrap {
+    height: 100px;
+  }
+
+  .card-title {
+    font-size: 14.5px;
+  }
+
+  .card-price-pill span {
+    font-size: 14.5px;
+  }
+}
