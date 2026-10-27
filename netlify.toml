@@ -1,0 +1,9 @@
+[build]
+  publish = "dist"
+  command = "pnpm build"
+
+# Regla SPA: Redirige cualquier ruta (como /conjunto) a index.html para que React maneje la vista
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
